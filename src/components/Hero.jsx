@@ -14,7 +14,7 @@ const Hero = () => {
     }
 
     const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
-    
+    console.log(upcomingVideoIndex);
     const handeleMiniVdClick = () => {
         setHasClicked(true);
 

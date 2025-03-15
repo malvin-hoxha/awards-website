@@ -21,6 +21,12 @@
             setloadedVideos((prev) => prev + 1);
         }
 
+        useEffect(() => {
+            if (loadedVideos === totalVideos - 1) {
+                setIsLoading(false);
+            }
+          }, [loadedVideos]);
+
         const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
 
         const handeleMiniVdClick = () => {
@@ -80,8 +86,17 @@
         const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
 
         return (
-            <div className="relative h-dvh w-screen
-            overflow-x-hidden">
+            <div className="relative h-dvh w-screen overflow-x-hidden">
+            {isLoading && (
+                <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
+                {/* https://uiverse.io/G4b413l/tidy-walrus-92 */}
+                <div className="three-body">
+                    <div className="three-body__dot"></div>
+                    <div className="three-body__dot"></div>
+                    <div className="three-body__dot"></div>
+                </div>
+                </div>
+            )}
                
                 <div id="video-frame" className="relative z-10 h-dvh w-screen
                 overflow-hidden rounded-lg bg-blue-75">
@@ -121,7 +136,6 @@
                             autoPlay
                             loop
                             muted
-                            id="background-video"
                             className="absolute left-0 top-0 size-full
                             object-cover object-center"
                             onLoadedData={handleVideoLoad}
